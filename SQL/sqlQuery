@@ -1,0 +1,7 @@
+SELECT region.name AS Region, city.name AS City, pharmacy.number AS Number_Pharmacy, COUNT(DISTINCT products.name) AS Product
+FROM region 
+  LEFT JOIN city ON region.id_r = city.id_r 
+    LEFT JOIN pharmacy ON city.id_c = pharmacy.id_c 
+    LEFT JOIN pharmproduct ON pharmacy.id_ph = pharmproduct.id_ph
+    LEFT JOIN products ON pharmproduct.id_pr = products.id_pr
+GROUP BY pharmacy.number, city.name
